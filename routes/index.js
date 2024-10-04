@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2021.
- * Jesus Nuñez <Jesus.nunez2050@gmail.com>
- */
-
 const express = require('express');
+const client = require('../bin/db.connection');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 

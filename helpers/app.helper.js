@@ -1,11 +1,7 @@
-const pool = require('../bin/DBconfig')
-
 async function getAppData() {
-
-    const AppData = {}
-    return AppData
+  return {};
 }
 
 module.exports = {
-    getAppData
+  getAppData,
 };

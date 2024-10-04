@@ -1,5 +1,5 @@
 function transactionReference() {
-    return Math.floor(Math.random() * 1000000);
+  return Math.floor(Math.random() * 1000000);
 }
 
-module.exports = transactionReference
+module.exports = transactionReference;
