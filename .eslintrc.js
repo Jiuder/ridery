@@ -1,0 +1,21 @@
+module.exports = {
+  extends: ['standard'],
+  plugins: ['import', 'node', 'prettier'],
+  ignorePatterns: ['.eslintrc.js', '**/config/**', '**/bin/**'],
+  rules: {
+    'no-console': ['error', { allow: ['warn', 'error', 'time', 'timeEnd'] }],
+    'no-unused-vars': 'error',
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
+    indent: ['error', 2],
+    'import/order': 'error',
+    'space-before-function-paren': 'off',
+    'comma-dangle': 'off',
+    'prefer-const': 'error',
+    'no-var': 'error',
+    'max-params': ['warn', 4],
+    'max-lines': ['warn', 300],
+    complexity: ['warn', 8],
+    curly: 2,
+  },
+};
