@@ -1,7 +1,6 @@
 const { to } = require('await-to-js');
 const pe = require('parse-error');
-const { log } = require('nodemon/lib/utils/log');
-const { getAppData } = require('../../helpers/app.helper');
+const { getAppData } = require('../helpers/app.helper');
 
 module.exports.to = async (promise) => {
   const [err, res] = await to(promise);
@@ -10,19 +9,15 @@ module.exports.to = async (promise) => {
 };
 
 module.exports.ReE = function (res, err, code, e) {
-  // Error Web Response
   if (
     (typeof err === 'object' || typeof err === 'string') &&
     typeof err.message !== 'undefined'
   ) {
     err = err.message;
   }
-  if ((code === 500 || code === 400) && e) {
-    log(e);
-  }
   if (typeof code !== 'undefined') res.statusCode = code;
 
-  return res.json({ success: false, message: err.message });
+  return res.json({ success: false, message: err });
 };
 
 module.exports.ReS = function (res, requestData, code = 200) {
@@ -31,12 +26,7 @@ module.exports.ReS = function (res, requestData, code = 200) {
     res.statusCode = code;
   }
   const appData = getAppData();
-  // eslint-disable-next-line
-  if (appData && appData.hasOwnProperty('maintenanceMode')) {
-    if (appData.maintenanceMode) {
-      code = 207;
-    }
-  }
+
   return res.status(code).send({
     success,
     appData,

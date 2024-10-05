@@ -1,16 +1,19 @@
+const path = require('path');
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const usersRouter = require('./routes/user.rutes');
+const vehicleRoutes = require('./routes/vehicle.routes');
 
 const indexRouter = require('./routes/index');
+require('./bin/db.connection');
 
 const app = express();
 
 require('dotenv').config();
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'common/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -30,6 +33,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
+app.use('/user', usersRouter);
+app.use('/vehicle', vehicleRoutes);
 
 app.use(function (req, res, next) {
   next(createError(404));
